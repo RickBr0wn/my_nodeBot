@@ -3,12 +3,11 @@ let http = require('http');
 let express = require('express');
 let io = require('socket.io');
 let five = require('johnny-five');
-let temporal = require('temporal');
 let colors = require('colors');
 let keypress = require('keypress');
 
 // Create the board instance
-let board = new five.Board({ port: "COM3" });
+let board = new five.Board();
 
 // Create the app instance
 let app = new express();
@@ -24,55 +23,17 @@ board.on("ready", function(){
     let left_wheel = new five.Servo.Continuous(9).stop();
     let right_wheel = new five.Servo.Continuous(10).stop();
 
-    // // Intial test code (used to calibrate the cr servo)
-    // this.repl.inject({
-    //     on: function(){
-    //         left_wheel.cw();
-    //         right_wheel.ccw();
-    //     },
-    //     off: function(){
-    //         left_wheel.stop();
-    //         right_wheel.stop();
-    //     }
-    // });
-
-    // // Temporal.queue will allow automated movement for 2nd testing
-    // temporal.queue([
-    //     {
-    //         delay: 5000,
-    //         task: function(){
-    //             console.log("MOVING FORWARDS".green);
-    //             left_wheel.cw();
-    //             right_wheel.ccw();
-    //         }
-    //     }, {
-    //         delay: 3000,
-    //         task: function(){
-    //             console.log("STOPPING".red);
-    //             left_wheel.stop();
-    //             right_wheel.stop();
-    //         }
-    //     }, {
-    //         delay: 3000,
-    //         task: function(){
-    //             console.log("MOVING BACKWARDS".green);
-    //             left_wheel.ccw();
-    //             right_wheel.cw();
-    //         }
-    //     }, {
-    //         delay: 3000,
-    //         task: function(){
-    //             console.log("STOPPING".red);
-    //             left_wheel.stop();
-    //             right_wheel.stop();
-    //         }
-    //     }, {
-    //         delay: 1500,
-    //         task: function(){
-    //             console.log("TEST COMPLETE. QUITTING APP!".blue);
-    //         }
-    //     }
-    // ]);
+    // Intial test code (used to calibrate the CR SERVO)
+    this.repl.inject({
+        on: function(){
+            left_wheel.cw();
+            right_wheel.ccw();
+        },
+        off: function(){
+            left_wheel.stop();
+            right_wheel.stop();
+        }
+    });
 
     // Keyboard movement
     // Make PROCESS.STDIN begin emiitting KEYPRESS events
@@ -102,8 +63,8 @@ board.on("ready", function(){
             right_wheel.cw();
         } else if(key && key.name == 'down'){
             console.log('BACKWARD'.green);
-            left_wheel.cw();
-            right_wheel.ccw();
+            left_wheel.ccw();
+            right_wheel.cw();
         }
     });
 
