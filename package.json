@@ -1,0 +1,31 @@
+{
+  "name": "my_nodebot",
+  "version": "1.0.0",
+  "description": "my nodeBot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RickBr0wn/my_nodeBot.git"
+  },
+  "keywords": [
+    "node",
+    "bot",
+    "nodeBot"
+  ],
+  "author": "Rick Brown",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RickBr0wn/my_nodeBot/issues"
+  },
+  "homepage": "https://github.com/RickBr0wn/my_nodeBot#readme",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "express": "^4.16.2",
+    "johnny-five": "^0.13.0",
+    "socket.io": "^2.0.4",
+    "temporal": "^0.6.0"
+  }
+}
